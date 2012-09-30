@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+    </style>
+
+    <style name="ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="android:displayOptions"></item>
+        <item name="android:background">@color/primary_1</item>
+        <item name="android:backgroundSplit">@color/primary_4</item>
+    </style>
+
+</resources>
