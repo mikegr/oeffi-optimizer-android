@@ -6,8 +6,12 @@ import com.mintplex.oeffioptimizer.model.Location;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Server {
+public class Server implements IServer {
 
+    /* (non-Javadoc)
+     * @see com.mintplex.oeffioptimizer.IServer#getLocations()
+     */
+    @Override
     public List<Location> getLocations(){
         ArrayList<Location> result = new ArrayList<Location>();
         Location root = new Location(1, "Wien");
@@ -26,10 +30,19 @@ public class Server {
         
     }
     
-    public void addLocation(Location loc) {
+    /* (non-Javadoc)
+     * @see com.mintplex.oeffioptimizer.IServer#addLocation(com.mintplex.oeffioptimizer.model.Location)
+     */
+    @Override
+    public Integer addLocation(Location loc) {
         // do not transfer
+        return null;
     }
     
+    /* (non-Javadoc)
+     * @see com.mintplex.oeffioptimizer.IServer#getExits(int)
+     */
+    @Override
     public List<Exit> getExits(int location) {
         List<Exit> result = new ArrayList<Exit>();
         Exit exit1 = new Exit(5, 1, "U2", "Ganz vorne");
@@ -44,6 +57,10 @@ public class Server {
         super();
     }
 
+    /* (non-Javadoc)
+     * @see com.mintplex.oeffioptimizer.IServer#addExit(com.mintplex.oeffioptimizer.model.Exit)
+     */
+    @Override
     public void addExit(Exit exit) {
         //do not transfer
     }

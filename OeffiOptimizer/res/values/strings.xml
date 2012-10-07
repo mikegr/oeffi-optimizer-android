@@ -7,5 +7,6 @@
     <string name="loading_data">Lade Daten</string>
     <string name="location">Ort</string>
     <string name="exits">Ausgänge</string>
+    <string name="ort_hinzufuegen">Ort hinzufügen</string>
 
 </resources>

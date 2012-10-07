@@ -8,15 +8,20 @@ import com.mintplex.oeffioptimizer.model.Location;
 
 import java.util.List;
 
-public class LocationLoader extends BetterAsyncTaskLoader<List<Location>> {
+public class LocationLoader extends BetterAsyncTaskLoader<LoaderResult<List<Location>>> {
 
+    
     public LocationLoader(Context context) {
         super(context);
     }
 
     @Override
-    public List<Location> loadInBackground() {
-        return new Server().getLocations();
-    }    
+    public LoaderResult<List<Location>> loadInBackground() {
+        try {
+            return new LoaderResult<List<Location>>(new GAServer().getLocations());
+        } catch (Exception e) {
+            return new LoaderResult<List<Location>>(e);
+        }
+    }
     
 }

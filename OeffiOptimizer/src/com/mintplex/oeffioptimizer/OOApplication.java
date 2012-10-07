@@ -10,6 +10,12 @@ import java.util.List;
 
 public class OOApplication extends Application implements LocationStore {
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.setTAG("OeffiOptimizer");
+        Log.setLogLevel(android.util.Log.VERBOSE);
+    }
     
     @Override
     public boolean isInitialized() {

@@ -6,6 +6,13 @@ import java.util.List;
 public class Location {
 
 
+    public Location() {
+    }
+    
+    public Location(String name) {
+        this.name = name;
+    }
+    
     public Location(int id, String name) {
         super();
         this.id = id;
@@ -16,6 +23,10 @@ public class Location {
     public String name;
     public int parent;
     
+    public int getParent() {
+        return parent;
+    }
+
     public List<Location> children = new ArrayList<Location>();
     
     public void add(Location loc) {
