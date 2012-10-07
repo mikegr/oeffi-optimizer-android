@@ -20,14 +20,15 @@ import com.mintplex.oeffioptimizer.AddExitFragment.EnterExitFinished;
 import com.mintplex.oeffioptimizer.model.Exit;
 import com.mintplex.oeffioptimizer.model.Location;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderResult<List<Exit>>>,
         EnterExitFinished {
 
     private final class ExitAdapter extends ArrayAdapter<Exit> {
-        private ExitAdapter(Context context, int textViewResourceId) {
-            super(context, textViewResourceId);
+        private ExitAdapter(Context context, List<Exit> list) {
+            super(context, R.layout.activity_exit_list_item, R.id.activity_exit_list_item_name,  list);
         }
 
         @Override
@@ -147,13 +148,17 @@ public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderRe
     }
 
     private void addExitToList(Exit result) {
-        exits.add(result);
-        initList(exits);
+        //exits.add(result);
+        //initList(exits);
+        adapter.add(result);
     };
 
-    private List<Exit> exits;
+    private List<Exit> exits = new ArrayList<Exit>();
 
+    ExitAdapter adapter; 
+    
     private void initList(List<Exit> list) {
-        listView.setAdapter(new ExitAdapter(this, R.layout.activity_exit_list_item));
+        adapter = new ExitAdapter(this, list);
+        listView.setAdapter(adapter);
     }
 }

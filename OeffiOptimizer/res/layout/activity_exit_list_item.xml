@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    >
+    android:background="@color/primary_1"
+    android:padding="8dp" >
 
-    <TextView
-        android:id="@+id/activity_exit_list_item_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:padding="8dp"
-        android:background="@color/primary_4"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:background="@drawable/exit_border"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/activity_exit_list_item_hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/activity_exit_list_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="2dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/activity_exit_list_item_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
 </LinearLayout>

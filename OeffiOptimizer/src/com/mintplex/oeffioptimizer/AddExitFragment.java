@@ -26,7 +26,9 @@ public class AddExitFragment extends DialogFragment {
             
             @Override
             public void onClick(View v) {
+                getDialog().dismiss();
                 ((EnterExitFinished)getActivity()).enterExitFinished(editName.getText().toString(), editHint.getText().toString());
+                
             }
         });
         

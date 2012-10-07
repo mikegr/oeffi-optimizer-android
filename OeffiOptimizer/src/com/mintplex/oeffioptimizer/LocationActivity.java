@@ -80,7 +80,7 @@ public class LocationActivity extends OOActivity implements
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Location loc = (Location) arg0.getItemAtPosition(arg2);
-                if (level == 5) {
+                if (level == 4) {
                     ExitActivity.start(LocationActivity.this, loc.key);
                 }
                 else {

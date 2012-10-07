@@ -20,4 +20,9 @@ public class Exit {
     public String id;
     public String name;
     public String hint;
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }
