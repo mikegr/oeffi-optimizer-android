@@ -21,12 +21,22 @@ public class AddExitFragment extends DialogFragment {
         editName = (EditText) view.findViewById(R.id.dialog_new_exit_name);
         editHint = (EditText) view.findViewById(R.id.dialog_new_exit_hint);
         
-        View ok = view.findViewById(R.id.dialog_new_exit_save);
+        View ok = view.findViewById(R.id.button_ok);
         ok.setOnClickListener(new OnClickListener() {
             
             @Override
             public void onClick(View v) {
                 ((EnterExitFinished)getActivity()).enterExitFinished(editName.getText().toString(), editHint.getText().toString());
+            }
+        });
+        
+        
+        View cancel = view.findViewById(R.id.button_cancel);
+        cancel.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
             }
         });
         

@@ -26,12 +26,13 @@ public class GAServer implements IServer {
     
             
     @Override
-    public void addExit(Exit exit) throws Exception {
-        int id = postObjectToURL(EXIT_URL + "?location=" + exit.location, exit);
-        exit.id = id;
+    public Exit addExit(Exit exit) throws Exception {
+        String key = postObjectToURL(EXIT_URL + "?location=" + exit.location, exit);
+        exit.id = key;
+        return exit;
     }
     
-    private int postObjectToURL(String url, Object obj) throws Exception {
+    private String postObjectToURL(String url, Object obj) throws Exception {
         Gson gson = new Gson();
         String json = gson.toJson(obj);
         URLConnection con = new URL(url).openConnection();
@@ -40,19 +41,19 @@ public class GAServer implements IServer {
         OutputStream os = con.getOutputStream();
         os.write(json.getBytes());
         os.close();
-        String id = Utils.convertStreamToString(con.getInputStream());;
-        return Integer.parseInt(id);
+        String key = Utils.convertStreamToString(con.getInputStream());;
+        return key;
     }
     
     @Override
-    public Integer addLocation(Location loc) throws Exception {
-        int id = postObjectToURL(LOCATION_URL, loc);
-        loc.id = id;
-        return id;
+    public Location addLocation(Location loc) throws Exception {
+        String key = postObjectToURL(LOCATION_URL, loc);
+        loc.key = key;
+        return loc;
     }
    
     @Override
-    public List<Exit> getExits(int location) throws Exception {
+    public List<Exit> getExits(String location) throws Exception {
         String url = EXIT_URL + "?location=" + location;
         String data = Utils.convertStreamToString(new URL(url).openStream());
         Type typeOfT = new TypeToken<List<Exit>>(){}.getType();

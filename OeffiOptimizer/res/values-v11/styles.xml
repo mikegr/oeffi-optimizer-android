@@ -5,8 +5,7 @@
     </style>
 
     <style name="ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
-        <item name="android:displayOptions"></item>
-        <item name="android:background">@color/primary_1</item>
+        <item name="android:background">@color/black</item>
         <item name="android:backgroundSplit">@color/primary_4</item>
     </style>
 

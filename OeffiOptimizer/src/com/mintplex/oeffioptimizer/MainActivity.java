@@ -19,7 +19,7 @@ public class MainActivity extends OOActivity {
             
             @Override
             public void run() {
-                test();        
+                //test();        
             }
         }).start();
     }
@@ -30,18 +30,18 @@ public class MainActivity extends OOActivity {
         Location loc = new Location("Wien");
         try {
             s.addLocation(loc);
-            Log.v("New Id: " + loc.id);
+            Log.v("New Id: " + loc.key);
             
             List<Location> locs = s.getLocations();
             for(Location l:locs) {
-                Log.v(l.id + " : " +l.name);
+                Log.v(l.key + " : " +l.name);
             }
             app.updateTree(locs);
            
-            Exit exit = new Exit(loc.id, "U5", "Vorne");
+            Exit exit = new Exit(loc.key, "U5", "Vorne");
             s.addExit(exit);
             
-            List<Exit> exits = s.getExits(loc.id);
+            List<Exit> exits = s.getExits(loc.key);
             
             for(Exit e:exits) {
                 Log.v("E:" + e.id + " - "+ e.name + " - " + e.hint);

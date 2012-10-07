@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
@@ -23,6 +24,25 @@ public class AddLocationFragment extends DialogFragment implements OnEditorActio
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_new_location, null);
+        
+        View ok = view.findViewById(R.id.button_ok);
+        ok.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+                ((EditNameDialogListener)getActivity()).onFinishEditDialog(editName.getText().toString());
+            }
+        });
+        
+        View cancel = view.findViewById(R.id.button_cancel);
+        cancel.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
         
         editName = (EditText) view.findViewById(R.id.dialog_new_location_name);
         getDialog().setTitle(R.string.ort_hinzufuegen);

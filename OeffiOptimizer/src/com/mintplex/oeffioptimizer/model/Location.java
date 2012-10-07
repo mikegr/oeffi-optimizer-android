@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Location {
 
-
     public Location() {
     }
     
@@ -13,26 +12,21 @@ public class Location {
         this.name = name;
     }
     
-    public Location(int id, String name) {
+    public Location(String key, String name) {
         super();
-        this.id = id;
+        this.key = key;
         this.name = name;
     }
 
-    public int id;
+    public String key;
     public String name;
-    public int parent;
+    public String parent = null;
     
-    public int getParent() {
+    public String getParent() {
         return parent;
     }
 
     public List<Location> children = new ArrayList<Location>();
-    
-    public void add(Location loc) {
-        children.add(loc);
-        loc.parent = id;
-    }
     
     @Override
     public String toString() {

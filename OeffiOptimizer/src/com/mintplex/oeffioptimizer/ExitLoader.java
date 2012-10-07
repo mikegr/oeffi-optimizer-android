@@ -9,9 +9,9 @@ import java.util.List;
 public class ExitLoader extends BetterAsyncTaskLoader<LoaderResult<List<Exit>>> {
 
     
-    private int location;
+    private String location;
     
-    public ExitLoader(Context context, int location) {
+    public ExitLoader(Context context, String location) {
         super(context);
         this.location = location;
     }

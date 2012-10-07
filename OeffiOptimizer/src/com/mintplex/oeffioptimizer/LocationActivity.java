@@ -16,8 +16,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.mintplex.oeffioptimizer.AddLocationFragment.EditNameDialogListener;
 import com.mintplex.oeffioptimizer.model.Location;
 
@@ -38,12 +40,13 @@ public class LocationActivity extends OOActivity implements
         ctx.startActivity(i);
     }
 
-    private int location;
+    private String locationKey;
+    private Location location;
     private ListView list;
     private ViewSwitcher switcher;
 
     
-    public static void start(Context ctx, int level, int location) {
+    public static void start(Context ctx, int level, String location) {
         Intent i = new Intent(ctx, LocationActivity.class);
         i.putExtra(LEVEL, level);
         i.putExtra(LOCATION, location);
@@ -54,17 +57,23 @@ public class LocationActivity extends OOActivity implements
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        
+        ActionBar bar = getSupportActionBar();
+        bar.setDisplayShowTitleEnabled(true);
+        bar.setDisplayShowHomeEnabled(true);
         setContentView(R.layout.activity_location);
         this.switcher = (ViewSwitcher) findViewById(R.id.activity_location_switcher);
         this.list = (ListView) findViewById(R.id.activity_location_listView);
         this.level = getIntent().getIntExtra(LEVEL, 0);
-        this.location = getIntent().getIntExtra(LOCATION, -1);
-
+        this.locationKey = getIntent().getStringExtra(LOCATION);
+        String[] levelNames = getResources().getStringArray(R.array.level_name);
+        bar.setTitle(levelNames[level]);
         if (!app.isInitialized()) {
             getSupportLoaderManager().initLoader(0, null, this);
         }
         else {
-            initList(app.getLocation(location).children);
+            initialized();
         }
         
         list.setOnItemClickListener(new OnItemClickListener() {
@@ -72,10 +81,10 @@ public class LocationActivity extends OOActivity implements
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Location loc = (Location) arg0.getItemAtPosition(arg2);
                 if (level == 5) {
-                    ExitActivity.start(LocationActivity.this, loc.id);
+                    ExitActivity.start(LocationActivity.this, loc.key);
                 }
                 else {
-                    LocationActivity.start(LocationActivity.this, level+1,  loc.id);
+                    LocationActivity.start(LocationActivity.this, level+1,  loc.key);
                 }
             }
         });
@@ -103,15 +112,18 @@ public class LocationActivity extends OOActivity implements
 
     @Override
     public void onFinishEditDialog(String inputText) {
-
-        new AsyncTask<String, Void, AsyncTaskResult<Integer>>() {
+        Location loc = new Location(inputText);
+        if (locationKey != null) {
+            loc.parent = locationKey;
+        }
+        new AsyncTask<Location, Void, AsyncTaskResult<Location>>() {
 
             @Override
-            protected AsyncTaskResult<Integer> doInBackground(String... params) {
+            protected AsyncTaskResult<Location> doInBackground(Location... params) {
                 try {
-                    return new AsyncTaskResult<Integer>(new GAServer().addLocation(new Location(params[0])));
+                    return new AsyncTaskResult<Location>(new GAServer().addLocation(params[0]));
                 } catch (Exception e) {
-                    return new AsyncTaskResult<Integer>(e);
+                    return new AsyncTaskResult<Location>(e);
                 }
             }
 
@@ -120,20 +132,31 @@ public class LocationActivity extends OOActivity implements
                 setSupportProgressBarIndeterminateVisibility(true);
             }
 
-            protected void onPostExecute(AsyncTaskResult<Integer> result) {
+            protected void onPostExecute(AsyncTaskResult<Location> result) {
                 setSupportProgressBarIndeterminateVisibility(false);
                 if (result.hasError()) {
                     Toast.makeText(LocationActivity.this, "Fehlgeschlagen: " + result.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
+                else {
+                    Location loc = result.getResult();
+                    adapter.add(loc);
+                    app.addLocation(loc);
+                    adapter.getCount();
+                }
+                
             };
 
-        }.execute(inputText);
+        }.execute(loc);
 
     }
-
+ 
+    
+    ArrayAdapter<Location> adapter;
+    
     private void initList(List<Location> locs) {
-        list.setAdapter(new ArrayAdapter<Location>(this, R.layout.activity_location_list_item,
-                R.id.activity_location_list_item_text, locs));
+        adapter = new ArrayAdapter<Location>(this, R.layout.activity_location_list_item,
+                R.id.activity_location_list_item_text, locs);
+        list.setAdapter(adapter);
         switcher.setDisplayedChild(1);
     }
 
@@ -155,7 +178,18 @@ public class LocationActivity extends OOActivity implements
         }
         else {
             app.updateTree(result.getResult());
-            app.getLocation(location);
+            initialized();
+        }
+    }
+    
+
+    private List<Location> locations;
+    private void initialized() {
+        if (locationKey == null) {
+            initList(new ArrayList<Location>(app.getRoots()));
+        }
+        else {
+            initList(app.getLocation(locationKey).children);
         }
     }
 }

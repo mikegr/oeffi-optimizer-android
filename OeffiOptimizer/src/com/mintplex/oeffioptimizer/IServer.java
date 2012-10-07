@@ -10,10 +10,10 @@ public interface IServer {
 
     public abstract List<Location> getLocations() throws Exception;
 
-    public abstract Integer addLocation(Location loc) throws Exception;
+    public abstract Location addLocation(Location loc) throws Exception;
 
-    public abstract List<Exit> getExits(int location) throws Exception;
+    public abstract List<Exit> getExits(String location) throws Exception;
 
-    public abstract void addExit(Exit exit) throws Exception;
+    public abstract Exit addExit(Exit exit) throws Exception;
 
 }

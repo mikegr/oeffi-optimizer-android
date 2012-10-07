@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.mintplex.oeffioptimizer.AddExitFragment.EnterExitFinished;
 import com.mintplex.oeffioptimizer.model.Exit;
 import com.mintplex.oeffioptimizer.model.Location;
@@ -44,14 +45,15 @@ public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderRe
     private Location location;
     private ListView listView;
 
-    public static void start(Context ctx, int id) {
-        ctx.startActivity(new Intent(ctx, ExitActivity.class).putExtra(LOCATION, id));
+    public static void start(Context ctx, String key) {
+        ctx.startActivity(new Intent(ctx, ExitActivity.class).putExtra(LOCATION, key));
     }
 
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-        location = app.getLocation(getIntent().getIntExtra(LOCATION, -1));
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        location = app.getLocation(getIntent().getStringExtra(LOCATION));
         setContentView(R.layout.activity_exit);
         listView = (ListView) findViewById(R.id.activity_exit_list);
         getSupportLoaderManager().initLoader(0, null, this);
@@ -76,7 +78,7 @@ public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderRe
 
     @Override
     public Loader<LoaderResult<List<Exit>>> onCreateLoader(int arg0, Bundle arg1) {
-        return new ExitLoader(this, location.id);
+        return new ExitLoader(this, location.key);
     }
 
     @Override
@@ -111,7 +113,7 @@ public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderRe
 
     @Override
     public void enterExitFinished(String name, String hint) {
-        Exit exit = new Exit(location.id, name, hint);
+        Exit exit = new Exit(location.key, name, hint);
         new AsyncTask<Exit, Void, AsyncTaskResult<Exit>>() {
 
             @Override
