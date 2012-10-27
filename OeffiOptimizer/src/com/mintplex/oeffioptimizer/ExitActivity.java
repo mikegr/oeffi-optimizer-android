@@ -121,7 +121,7 @@ public class ExitActivity extends OOActivity implements LoaderCallbacks<LoaderRe
             protected AsyncTaskResult<Exit> doInBackground(Exit... params) {
                 try {
                     Exit e = params[0];
-                    new GAServer().addExit(e);
+                    new GAServer(ExitActivity.this).addExit(e);
                     return new AsyncTaskResult<Exit>(e);
                 } catch (Exception e) {
                     return new AsyncTaskResult<Exit>(e);

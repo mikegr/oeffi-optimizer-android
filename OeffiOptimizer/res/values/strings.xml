@@ -1,12 +1,20 @@
 <resources>
 
-    <string name="app_name">ÖffiOptimizer</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Öffi Optimizer</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="loading_data">Lade Daten</string>
     <string name="location">Ort</string>
     <string name="exits">Ausgänge</string>
-    <string name="ort_hinzufuegen">Ort hinzufügen</string>
+    <string name="location_hinzufuegen">%1$s hinzufügen</string>
+	<string name="welcome_message">Hallo, 
+Die App hilft beim Finden des optimalen Ausstieges beim Fahren mit U-Bahn, Bim oder Bus. 
+Ein schnelleres Umsteigen oder ein schnelleres Erreichung des Zieles ist möglich, wenn ich schon bei der richtigen Tür aussteige und damit einen kürzeren Weg habe, noch schnell vor anderen zu Rolltreppe komme oder eine Grünphase erwische.
 
+Die Informationen werden von der Benutzern selbst eingeben. Also nicht zögern und neue Stationen und Ausgänge hinzufügen. 
+
+Diese erste Version ist noch nicht besonders optimiert.
+
+Die Daten werden von Google via App-Engine gehostet. Wenn mein Quota für freie Resourcen erschöpft sind, ist der Dienst für den Rest des Tages leider offline. 
+Die Einnahmen aus der Werbung werden dazu verwendet, um die Kosten für die App-Engine zu bezahlen. 
+	</string>
 </resources>

@@ -19,7 +19,7 @@ public class ExitLoader extends BetterAsyncTaskLoader<LoaderResult<List<Exit>>> 
     @Override
     public LoaderResult<List<Exit>> loadInBackground() {
         try {
-            return new LoaderResult(new GAServer().getExits(location));
+            return new LoaderResult(new GAServer(getContext()).getExits(location));
         } catch (Exception e) {
             return new LoaderResult<List<Exit>>(e);
         }

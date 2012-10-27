@@ -3,7 +3,7 @@ package com.mintplex.oeffioptimizer.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Location {
+public class Location implements Comparable<Location> {
 
     public Location() {
     }
@@ -31,5 +31,13 @@ public class Location {
     @Override
     public String toString() {
         return name;
+    }
+    
+    @Override
+    public int compareTo(Location another) {
+        if (another == null) return -1;
+        if (name == null)  return 1;
+        if (name == null && another.name == null) return 0;
+        return name.compareTo(another.name);
     }
 } 

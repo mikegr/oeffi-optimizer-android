@@ -24,9 +24,12 @@ public class MainActivity extends OOActivity {
         }).start();
     }
 
+    public void onClick() {
+        LocationActivity.start(this, 0, null);
+    }
 
     private void test() {
-        GAServer s = new GAServer();
+        GAServer s = new GAServer(this);
         Location loc = new Location("Wien");
         try {
             s.addLocation(loc);

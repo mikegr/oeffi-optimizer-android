@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,5 +49,21 @@ public class Utils {
             tv.setText(txt);
         }
         return tv;
+    }
+    
+    public static void download(InputStream is, File cacheFile)
+            throws Exception {
+        FileOutputStream fos = new FileOutputStream(cacheFile);
+        try {
+            int rc = 0;
+            byte[] buffer = new byte[4096];
+            while ((rc = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, rc);
+            }
+        } finally {
+            fos.flush();
+            fos.close();
+            is.close();
+        }
     }
 }

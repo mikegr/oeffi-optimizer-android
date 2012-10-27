@@ -1,101 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/activity_exit_list_header_station"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary_5"
-        android:paddingBottom="4dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="4dp"
-        android:text="Station"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/white" />
+    android:layout_height="wrap_content"
+    android:background="@color/brand_grey"
+    android:orientation="vertical"
+    android:padding="8dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" >
+        android:background="@drawable/exit_border"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/activity_exit_list_header_station"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Linie"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:background="@color/primary_1"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="Station"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/activity_exit_list_header_transport"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:text="U0"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/primary_3" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Linie"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/activity_exit_list_header_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="U0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/primary_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Richtung"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" >
 
-        <TextView
-            android:id="@+id/activity_exit_list_header_direction"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Richtung"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/activity_exit_list_header_direction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="Endstation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/primary_3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="Endstation"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/primary_3" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" >
+            <TextView
+                android:id="@+id/activity_exit_list_header_town"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ort"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey" />
 
-        <TextView
-            android:id="@+id/activity_exit_list_header_town"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ort"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/grey" />
+            <TextView
+                android:id="@+id/activity_exit_list_header_town"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="-"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey" />
 
-        <TextView
-            android:id="@+id/activity_exit_list_header_town"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:text="-"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/grey" />
-
-        <TextView
-            android:id="@+id/activity_exit_list_header_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Typ"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/grey" />
+            <TextView
+                android:id="@+id/activity_exit_list_header_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Typ"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

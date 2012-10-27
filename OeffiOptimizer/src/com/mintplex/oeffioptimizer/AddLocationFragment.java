@@ -18,6 +18,8 @@ public class AddLocationFragment extends DialogFragment implements OnEditorActio
     public interface EditNameDialogListener {
         void onFinishEditDialog(String inputText);
     }
+
+    public static final String ARG_TYPE = "type";
     
     EditText editName;
     
@@ -45,7 +47,8 @@ public class AddLocationFragment extends DialogFragment implements OnEditorActio
         });
         
         editName = (EditText) view.findViewById(R.id.dialog_new_location_name);
-        getDialog().setTitle(R.string.ort_hinzufuegen);
+        String levelName = getArguments().getString(ARG_TYPE);
+        getDialog().setTitle(getString(R.string.location_hinzufuegen, new Object[] {levelName}));
         
         getDialog().getWindow().setSoftInputMode(
                 LayoutParams.SOFT_INPUT_STATE_VISIBLE);

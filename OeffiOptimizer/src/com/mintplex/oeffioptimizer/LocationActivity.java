@@ -24,6 +24,7 @@ import com.mintplex.oeffioptimizer.AddLocationFragment.EditNameDialogListener;
 import com.mintplex.oeffioptimizer.model.Location;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LocationActivity extends OOActivity implements
@@ -54,6 +55,7 @@ public class LocationActivity extends OOActivity implements
     }
     
     private int level;
+    private String levelName;
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
@@ -68,7 +70,8 @@ public class LocationActivity extends OOActivity implements
         this.level = getIntent().getIntExtra(LEVEL, 0);
         this.locationKey = getIntent().getStringExtra(LOCATION);
         String[] levelNames = getResources().getStringArray(R.array.level_name);
-        bar.setTitle(levelNames[level]);
+        levelName = levelNames[level];
+        bar.setTitle(levelName);
         if (!app.isInitialized()) {
             getSupportLoaderManager().initLoader(0, null, this);
         }
@@ -107,6 +110,9 @@ public class LocationActivity extends OOActivity implements
     private void showAddLocationDialog() {
         FragmentManager fm = getSupportFragmentManager();
         AddLocationFragment f = new AddLocationFragment();
+        Bundle b = new Bundle();
+        b.putString(AddLocationFragment.ARG_TYPE, levelName);
+        f.setArguments(b);
         f.show(fm, "ADD_LOCATION");
     }
 
@@ -121,7 +127,7 @@ public class LocationActivity extends OOActivity implements
             @Override
             protected AsyncTaskResult<Location> doInBackground(Location... params) {
                 try {
-                    return new AsyncTaskResult<Location>(new GAServer().addLocation(params[0]));
+                    return new AsyncTaskResult<Location>(new GAServer(LocationActivity.this).addLocation(params[0]));
                 } catch (Exception e) {
                     return new AsyncTaskResult<Location>(e);
                 }
@@ -139,9 +145,8 @@ public class LocationActivity extends OOActivity implements
                 }
                 else {
                     Location loc = result.getResult();
-                    adapter.add(loc);
                     app.addLocation(loc);
-                    adapter.getCount();
+                    adapter.notifyDataSetChanged();
                 }
                 
             };
@@ -189,7 +194,9 @@ public class LocationActivity extends OOActivity implements
             initList(new ArrayList<Location>(app.getRoots()));
         }
         else {
-            initList(app.getLocation(locationKey).children);
+            List<Location> list = app.getLocation(locationKey).children;
+            Collections.sort(list);
+            initList(list);
         }
     }
 }

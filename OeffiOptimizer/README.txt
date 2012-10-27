@@ -1,0 +1,13 @@
+Hallo, 
+Die App hilft beim Finden der optimalen Ausstieges beim Fahren mit U-Bahn, Bim oder Bus. 
+Ein schnelleres Umsteigen oder Erreichung des Zieles ist möglich, wenn ich schon bei der richtigen Tür aussteige und damit einen kürzeren Weg, noch schnell vor anderen zu Rolltreppe komme oder eine Grünphase erwische.
+
+Die Informationen werden von der Benutzern selbst eingeben. Also nicht zögern und neue Stationen und Ausgänge hinzufügen. 
+
+Diese erste Version ist noch nicht besonders optimiert.
+
+Die Daten werden von Google via App-Engine gehostet. 
+Wenn mein Quota für freie Resourcen erschöpft sind, ist der Dienst für den Rest des Tages leider offline. 
+Die Einnahmen aus der Werbung werden dazu verwendet, um die Kosten für die App-Engine uu bezahlen. 
+
+

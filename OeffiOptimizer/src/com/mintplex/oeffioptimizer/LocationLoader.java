@@ -18,7 +18,7 @@ public class LocationLoader extends BetterAsyncTaskLoader<LoaderResult<List<Loca
     @Override
     public LoaderResult<List<Location>> loadInBackground() {
         try {
-            return new LoaderResult<List<Location>>(new GAServer().getLocations());
+            return new LoaderResult<List<Location>>(new GAServer(getContext()).getLocations());
         } catch (Exception e) {
             return new LoaderResult<List<Location>>(e);
         }
